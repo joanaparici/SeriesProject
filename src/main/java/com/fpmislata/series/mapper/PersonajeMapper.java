@@ -21,12 +21,14 @@ public interface PersonajeMapper {
     PersonajeListWeb toPersonajeListWeb(Personaje personaje);
 
     //@Mapping(target = "actorVozList")
+
+//    @Mapping(target = "serie", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.serieToSerie(personaje.getSerie()))")
+//@Mapping(target = "serie", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.serieEntityToSerie(personajeEntity.getSerieEntity()))")
+    @Mapping(target = "serieList", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.toSerieListWeb(personaje.getSerie()))")
     PersonajeDetailWeb toPersonajeDetailWeb(Personaje personaje);
-
-    @Mapping(target = "actorVozList", expression = "java(ActorVozMapper.mapper.toActorVozList(personajeEntity.getActorVozEntities()))")
+    @Mapping(target = "actorVozList", expression = "java(com.fpmislata.series.mapper.ActorVozMapper.mapper.actorVozEntitiesToActorVozList(personajeEntity.getActorVozEntities()))")
+    @Mapping(target = "serie", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.toSerie(personajeEntity.getSerieEntity()))")
     Personaje toPersonaje(PersonajeEntity personajeEntity);
-
-
 
     // Método de utilidad para mapear List<ActorVoz> a List<String>
     default List<String> mapActorVozListToNameList(List<ActorVoz> actorVozList) {
@@ -37,6 +39,4 @@ public interface PersonajeMapper {
                 .map(ActorVoz::getName) // Asume que ActorVoz tiene un método getNombre
                 .collect(Collectors.toList());
     }
-
-
 }

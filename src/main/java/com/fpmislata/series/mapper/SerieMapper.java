@@ -15,5 +15,16 @@ public interface SerieMapper {
     List<Serie> toSerieList(List<SerieEntity> serieEntities);
 
     SerieListWeb toSerieListWeb(Serie serie);
+
+    Serie toSerie(SerieEntity serieEntity);
+
+
+    default String serieEntityToSerie(SerieEntity serieEntity) {
+        if (serieEntity == null) {
+            return null;
+        }
+        return serieEntity.getTitle();
+    }
+
 }
 

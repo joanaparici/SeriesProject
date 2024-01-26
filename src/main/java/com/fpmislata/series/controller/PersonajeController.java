@@ -46,4 +46,25 @@ public class PersonajeController {
         return response;
     }
 
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping("")
+//    public Response addPersonaje(@RequestBody Personaje personaje){
+//        Personaje personajeAdd = personajeService.addPersonaje(personaje);
+//        PersonajeDetailWeb personajeWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personajeAdd);
+//        Response response = Response.builder()
+//                .data(personajeWeb)
+//                .build();
+//        return response;
+//    }
+//
+//    @ResponseStatus(HttpStatus.OK)
+//    @PutMapping("/{id}")
+//    public Response updatePersonaje(@PathVariable("id") int id, @RequestBody Personaje personaje){
+//        Personaje personajeUpdate = personajeService.updatePersonaje(id, personaje);
+//        PersonajeDetailWeb personajeWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personajeUpdate);
+//        Response response = Response.builder()
+//                .data(personajeWeb)
+//                .build();
+//        return response;
+//    }
 }

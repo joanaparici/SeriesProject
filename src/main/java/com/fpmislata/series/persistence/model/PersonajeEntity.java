@@ -21,8 +21,10 @@ public class PersonajeEntity {
     private String rol;
     @Column(name = "Descripcion")
     private String descripcion;
-    @Column(name = "SerieID")
-    private int serieId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SerieID")
+    private SerieEntity serieEntity;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

@@ -7,8 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SerieListWeb {
+public class SerieDetailWeb {
     private String title;
-    private String genre;
-    private String synopsis;
 }

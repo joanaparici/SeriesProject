@@ -14,6 +14,6 @@ public class Personaje {
     private String name;
     private String rol;
     private String descripcion;
-    private String serieID;
     private List<ActorVoz> actorVozList;
+    private Serie serie;
 }
