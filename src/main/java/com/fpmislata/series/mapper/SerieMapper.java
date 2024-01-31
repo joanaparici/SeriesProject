@@ -2,7 +2,9 @@ package com.fpmislata.series.mapper;
 
 import com.fpmislata.series.controller.model.serie.SerieListWeb;
 import com.fpmislata.series.domain.entity.Serie;
+import com.fpmislata.series.domain.repository.SerieRepository;
 import com.fpmislata.series.persistence.model.SerieEntity;
+import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -25,6 +27,15 @@ public interface SerieMapper {
         }
         return serieEntity.getTitle();
     }
+
+    default Serie mapSerieIdToSerie(Integer serieId, @Context SerieRepository serieRepository) {
+        if (serieId == null) {
+            return null;
+        }
+        return serieRepository.findById(serieId);
+    }
+
+    SerieEntity toSerieEntity(Serie serie);
 
 }
 

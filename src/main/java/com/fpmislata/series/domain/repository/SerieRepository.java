@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SerieRepository {
     List<Serie> getAll();
+
+    Serie findById(int id);
 }

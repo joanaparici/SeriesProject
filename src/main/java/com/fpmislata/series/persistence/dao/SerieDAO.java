@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface SerieDAO extends JpaRepository<SerieEntity, Integer> {
     List<SerieEntity> findAll();
+
+    SerieEntity findById(int id);
 }

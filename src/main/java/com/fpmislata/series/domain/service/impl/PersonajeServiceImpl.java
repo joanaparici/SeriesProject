@@ -22,10 +22,12 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     @Override
     public Personaje findById(int id) {
-        Personaje personaje = personajeRepository.findById(id);
         return personajeRepository.findById(id);
+    }
 
-//        Personaje personaje = personajeRepository.findById(id);
-//        return PersonajeMapper.mapper.toPersonajeDetailWeb(personaje);
+    @Override
+    public Personaje addPersonaje(Personaje personaje) {
+
+        return personajeRepository.addPersonaje(personaje);
     }
 }

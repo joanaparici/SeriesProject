@@ -28,4 +28,11 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
         PersonajeEntity personajeEntity = personajeDAO.findById(id);
         return PersonajeMapper.mapper.toPersonaje(personajeEntity);
     }
+
+    @Override
+    public Personaje addPersonaje(Personaje personaje) {
+        PersonajeEntity personajeEntity = PersonajeMapper.mapper.toPersonajeEntity(personaje);      // Convertimos el personaje a personajeEntity
+        personajeDAO.save(personajeEntity);                                                         // Guardamos el personajeEntity en la base de datos
+        return PersonajeMapper.mapper.toPersonaje(personajeEntity);                                 // Devolvemos el personaje con el id
+    }
 }

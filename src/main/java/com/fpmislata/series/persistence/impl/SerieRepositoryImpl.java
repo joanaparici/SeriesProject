@@ -22,4 +22,11 @@ public class SerieRepositoryImpl implements SerieRepository {
         serieEntities = serieDAO.findAll();
         return SerieMapper.mapper.toSerieList(serieEntities);
     }
+
+    @Override
+    public Serie findById(int id) {
+        SerieEntity serieEntity;
+        serieEntity = serieDAO.findById(id);
+        return SerieMapper.mapper.toSerie(serieEntity);
+    }
 }

@@ -9,4 +9,6 @@ public interface PersonajeRepository {
     List<Personaje> getAll();
 
     Personaje findById(int id);
+
+    Personaje addPersonaje(Personaje personaje);
 }
