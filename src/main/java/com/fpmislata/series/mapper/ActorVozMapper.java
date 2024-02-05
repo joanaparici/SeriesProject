@@ -27,4 +27,6 @@ public interface ActorVozMapper {
         return actorVozList;
     }
 
+    List<ActorVozEntity> actorVozListToActorVozEntityList (List<ActorVoz> actorVozList);
+
 }

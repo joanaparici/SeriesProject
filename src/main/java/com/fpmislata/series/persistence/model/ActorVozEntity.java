@@ -20,13 +20,13 @@ public class ActorVozEntity {
     @Column(name = "Nacionalidad")
     private String nacionalidad;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "personaje_actor",
-            joinColumns = @JoinColumn(name = "actorID"),
-            inverseJoinColumns = @JoinColumn(name = "personajeID")
-    )
-    private List<PersonajeEntity> personajeEntities;
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "personaje_actor",
+//            joinColumns = @JoinColumn(name = "ActorID"),
+//            inverseJoinColumns = @JoinColumn(name = "PersonajeID")
+//    )
+//    private List<PersonajeEntity> personajeEntity;
 
 
 }

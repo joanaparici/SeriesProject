@@ -11,6 +11,10 @@ public interface PersonajeService {
 
     Personaje findById(int id);
 
-    Personaje addPersonaje(Personaje personaje);
+    Personaje addPersonaje(Personaje personaje, int serieId, List<Integer> actorVozIdList);
+
+    Personaje updatePersonaje(int id, Personaje personaje, int serieId, List<Integer> actorVozIdList);
+
+    void deletePersonaje(int id);
 }
 

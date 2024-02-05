@@ -28,12 +28,6 @@ public interface SerieMapper {
         return serieEntity.getTitle();
     }
 
-    default Serie mapSerieIdToSerie(Integer serieId, @Context SerieRepository serieRepository) {
-        if (serieId == null) {
-            return null;
-        }
-        return serieRepository.findById(serieId);
-    }
 
     SerieEntity toSerieEntity(Serie serie);
 

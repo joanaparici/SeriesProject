@@ -11,4 +11,8 @@ public interface PersonajeRepository {
     Personaje findById(int id);
 
     Personaje addPersonaje(Personaje personaje);
+
+    Personaje updatePersonaje(int id, Personaje personaje);
+
+    void deletePersonaje(int id);
 }

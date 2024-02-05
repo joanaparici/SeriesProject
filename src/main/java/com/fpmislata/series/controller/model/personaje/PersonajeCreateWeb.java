@@ -14,5 +14,5 @@ public class PersonajeCreateWeb {
     private String rol;
     private String descripcion;
     private int serieId;
-    private List<Integer> actorVozId;
+    private List<Integer> actorVozIdList;
 }

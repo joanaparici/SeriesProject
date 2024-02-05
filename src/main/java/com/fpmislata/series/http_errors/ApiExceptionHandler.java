@@ -29,7 +29,7 @@ public class ApiExceptionHandler {
     @ResponseBody // Indicar que el método devuelve una respuesta en formato JSON
     public ErrorMessage exception(Exception exception) {
         exception.printStackTrace(); // Imprimir la traza de la excepción en la consola
-        return new ErrorMessage("Internal error", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        return new ErrorMessage(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
         // Crear un objeto ErrorMessage con un mensaje genérico de error y el código de estado 500,
         // y devolverlo como respuesta JSON
     }
@@ -38,6 +38,6 @@ public class ApiExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
     public ErrorMessage badRequest(HttpMessageNotReadableException exception) {
-        return new ErrorMessage("Invalid request body", HttpStatus.BAD_REQUEST.value());
+        return new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 }

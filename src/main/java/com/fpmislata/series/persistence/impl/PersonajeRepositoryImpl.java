@@ -7,6 +7,7 @@ import com.fpmislata.series.persistence.dao.PersonajeDAO;
 import com.fpmislata.series.persistence.model.PersonajeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,9 +31,23 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
     }
 
     @Override
+    @Transactional
     public Personaje addPersonaje(Personaje personaje) {
         PersonajeEntity personajeEntity = PersonajeMapper.mapper.toPersonajeEntity(personaje);      // Convertimos el personaje a personajeEntity
         personajeDAO.save(personajeEntity);                                                         // Guardamos el personajeEntity en la base de datos
         return PersonajeMapper.mapper.toPersonaje(personajeEntity);                                 // Devolvemos el personaje con el id
+    }
+
+    @Override
+    public Personaje updatePersonaje(int id, Personaje personaje) {
+        PersonajeEntity personajeEntity = PersonajeMapper.mapper.toPersonajeEntity(personaje);      // Convertimos el personaje a personajeEntity
+        personajeEntity.setId(id);                                                                  // Le asignamos el id
+        personajeDAO.save(personajeEntity);                                                         // Guardamos el personajeEntity en la base de datos
+        return PersonajeMapper.mapper.toPersonaje(personajeEntity);                                 // Devolvemos el personaje con el id
+    }
+
+    @Override
+    public void deletePersonaje(int id) {
+        personajeDAO.deleteById(id);
     }
 }

@@ -3,6 +3,7 @@ package com.fpmislata.series.mapper;
 import com.fpmislata.series.controller.model.personaje.PersonajeCreateWeb;
 import com.fpmislata.series.controller.model.personaje.PersonajeDetailWeb;
 import com.fpmislata.series.controller.model.personaje.PersonajeListWeb;
+import com.fpmislata.series.controller.model.personaje.PersonajeUpdateWeb;
 import com.fpmislata.series.domain.entity.ActorVoz;
 import com.fpmislata.series.domain.entity.Personaje;
 import com.fpmislata.series.domain.entity.Serie;
@@ -42,13 +43,15 @@ public interface PersonajeMapper {
     }
 
     @Mapping(target = "serieEntity", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.toSerieEntity(personaje.getSerie()))")
+    @Mapping(target = "actorVozEntities", expression = "java(com.fpmislata.series.mapper.ActorVozMapper.mapper.actorVozListToActorVozEntityList(personaje.getActorVozList()))")
     PersonajeEntity toPersonajeEntity(Personaje personaje);
 
     // Método de utilidad para obtener Serie a partir de serieId
-    default Serie mapSerieIdToSerie(int serieId, @Context SerieRepository serieRepository) {
-        return serieRepository.findById(serieId);
-    }
+//    default Serie mapSerieIdToSerie(int serieId, @Context SerieRepository serieRepository) {
+//        return serieRepository.findById(serieId);
+//    }
 
-    @Mapping(target = "serie", expression = "java(mapSerieIdToSerie(personajeCreateWeb.getSerieId(), serieRepository))")
-    Personaje PersonajeWebtoPersonaje(PersonajeCreateWeb personajeCreateWeb, @Context SerieRepository serieRepository);
+    Personaje PersonajeCreateWebtoPersonaje(PersonajeCreateWeb personajeCreateWeb);
+
+    Personaje PersonajeUpdateWebtoPersonaje(PersonajeUpdateWeb personajeUpdateWeb);
 }

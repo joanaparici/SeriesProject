@@ -28,9 +28,9 @@ public class PersonajeEntity {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "personaje_actor",
-        joinColumns = @JoinColumn(name = "personajeID"),
-        inverseJoinColumns = @JoinColumn(name = "actorID")
+            name = "personaje_actor",
+            joinColumns = @JoinColumn(name = "PersonajeID"),
+            inverseJoinColumns = @JoinColumn(name = "ActorID")
     )
     private List<ActorVozEntity> actorVozEntities;
 }

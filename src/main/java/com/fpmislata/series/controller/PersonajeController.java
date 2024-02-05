@@ -3,6 +3,7 @@ package com.fpmislata.series.controller;
 import com.fpmislata.series.controller.model.personaje.PersonajeCreateWeb;
 import com.fpmislata.series.controller.model.personaje.PersonajeDetailWeb;
 import com.fpmislata.series.controller.model.personaje.PersonajeListWeb;
+import com.fpmislata.series.controller.model.personaje.PersonajeUpdateWeb;
 import com.fpmislata.series.domain.entity.Personaje;
 import com.fpmislata.series.domain.repository.SerieRepository;
 import com.fpmislata.series.domain.service.PersonajeService;
@@ -19,10 +20,6 @@ import java.util.List;
 public class PersonajeController {
 
     public static final String PERSONAJES = "/personajes";
-
-    // Inyecta SerieRepository
-    @Autowired
-    private SerieRepository serieRepository;
 
     @Autowired
     private PersonajeService personajeService;
@@ -55,9 +52,9 @@ public class PersonajeController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public Response addPersonaje(@RequestBody PersonajeCreateWeb personajeCreateWeb){
-        Personaje personaje = PersonajeMapper.mapper.PersonajeWebtoPersonaje(personajeCreateWeb, serieRepository);
+        Personaje personaje = PersonajeMapper.mapper.PersonajeCreateWebtoPersonaje(personajeCreateWeb);
 
-        personajeService.addPersonaje(personaje);
+        personajeService.addPersonaje(personaje, personajeCreateWeb.getSerieId(), personajeCreateWeb.getActorVozIdList());
 
         PersonajeDetailWeb personajeWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personaje);
 
@@ -68,4 +65,26 @@ public class PersonajeController {
         return response;
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public Response updatePersonaje(@PathVariable("id") int id, @RequestBody PersonajeUpdateWeb personajeUpdateWeb){
+        Personaje personaje = PersonajeMapper.mapper.PersonajeUpdateWebtoPersonaje(personajeUpdateWeb);
+        personajeService.updatePersonaje(id, personaje, personajeUpdateWeb.getSerieId(), personajeUpdateWeb.getActorVozIdList());
+        PersonajeDetailWeb personajeWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personaje);
+        Response response = Response.builder()
+                .data(personajeWeb)
+                .data(personajeUpdateWeb)
+                .build();
+        return response;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public Response deletePersonaje(@PathVariable("id") int id){
+        personajeService.deletePersonaje(id);
+        Response response = Response.builder()
+                .data("Personaje eliminado con id: " + id)
+                .build();
+        return response;
+    }
 }
