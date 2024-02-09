@@ -1,5 +1,6 @@
 package com.fpmislata.series.domain.entity;
 
+import com.fpmislata.series.validation.DescriptionLenght;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -18,10 +19,13 @@ public class Personaje {
     @NotBlank(message = "Tienes que poner un nombre")
     private String name;
 
-    @Nullable
+    @NotBlank(message = "Tienes que poner un rol")
     private String rol;
+
     @Nullable
+    @DescriptionLenght
     private String descripcion;
+
     @Size(min = 1, message = "Debes insertar mínimo un actor de voz")
     private List<ActorVoz> actorVozList;
     private Serie serie;

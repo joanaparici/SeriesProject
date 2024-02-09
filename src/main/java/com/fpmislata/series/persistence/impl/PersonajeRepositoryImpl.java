@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PersonajeRepositoryImpl implements PersonajeRepository {
@@ -25,9 +26,8 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
     }
 
     @Override
-    public Personaje findById(int id) {
-        PersonajeEntity personajeEntity = personajeDAO.findById(id);
-        return PersonajeMapper.mapper.toPersonaje(personajeEntity);
+    public Optional<Personaje> findById(int id) {
+        return Optional.ofNullable(PersonajeMapper.mapper.toPersonaje(personajeDAO.findById(id).orElse(null)));
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.fpmislata.series.domain.service.PersonajeService;
 import com.fpmislata.series.mapper.PersonajeMapper;
 import com.fpmislata.series.persistence.model.PersonajeEntity;
 import com.fpmislata.series.persistence.model.SerieEntity;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,7 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     @Override
     public Personaje findById(int id) {
-        return personajeRepository.findById(id);
+        return personajeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Personaje no encontrado con ID: " + id));
     }
 
     @Override

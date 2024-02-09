@@ -28,6 +28,7 @@ public interface PersonajeMapper {
 
     @Mapping(target = "serieList", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.toSerieListWeb(personaje.getSerie()))")
     PersonajeDetailWeb toPersonajeDetailWeb(Personaje personaje);
+
     @Mapping(target = "actorVozList", expression = "java(com.fpmislata.series.mapper.ActorVozMapper.mapper.actorVozEntitiesToActorVozList(personajeEntity.getActorVozEntities()))")
     @Mapping(target = "serie", expression = "java(com.fpmislata.series.mapper.SerieMapper.mapper.toSerie(personajeEntity.getSerieEntity()))")
     Personaje toPersonaje(PersonajeEntity personajeEntity);
@@ -37,8 +38,7 @@ public interface PersonajeMapper {
         if (actorVozList == null) {
             return null;
         }
-        return actorVozList.stream()
-                .map(ActorVoz::getName) // Asume que ActorVoz tiene un método getNombre
+        return actorVozList.stream().map(ActorVoz::getName) // Asume que ActorVoz tiene un método getNombre
                 .collect(Collectors.toList());
     }
 

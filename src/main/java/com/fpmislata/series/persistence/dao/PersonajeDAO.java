@@ -10,5 +10,4 @@ import java.util.List;
 public interface PersonajeDAO extends JpaRepository<PersonajeEntity, Integer> {
     List<PersonajeEntity> findAll();
 
-    PersonajeEntity findById(int id);
 }
